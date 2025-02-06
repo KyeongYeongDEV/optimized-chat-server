@@ -1,0 +1,13 @@
+version: '3.8' # Docker Compose 버전
+services:
+  redis:
+    image: redis:latest # Redis Docker 이미지
+    container_name: redis-server # 컨테이너 이름
+    ports:
+      - "6379:6379" # 호스트:컨테이너 포트 바인딩
+    volumes:
+      - redis-data:/data # 데이터 영속성을 위한 볼륨 마운트
+    command: ["redis-server", "--appendonly", "yes"] # Redis 설정 변경 (예: 영속성 활성화)
+
+volumes:
+  redis-data: # 데이터 저장 볼륨
